@@ -9,7 +9,7 @@ from .sequence_encoders import SequenceEncoderBase
 
 class TokenModelFactory(object):
     def __init__(self, num_classes, token_index, max_tokens,
-                 embedding_type='glove.6B.100d', embedding_dims=100):
+                 embedding_type='glove.6B.100d', embedding_dims=100, embedding_url=None):
         """Creates a `TokenModelFactory` instance for building various models that operate over
         (samples, max_tokens) input. The token can be character, word or any other elementary token.
 
@@ -28,7 +28,7 @@ class TokenModelFactory(object):
         self.max_tokens = max_tokens
 
         if embedding_type is not None:
-            self.embeddings_index = get_embeddings_index(embedding_type)
+            self.embeddings_index = get_embeddings_index(embedding_type,embedding_url)
             self.embedding_dims = self.embeddings_index.values()[0].shape[-1]
         else:
             self.embeddings_index = None
