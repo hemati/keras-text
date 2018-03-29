@@ -39,8 +39,8 @@ class Dataset(object):
 
         self.is_multi_label = isinstance(labels[0], (set, list, tuple))
         self.label_encoder = MultiLabelBinarizer() if self.is_multi_label else LabelBinarizer()
-        self.y = self.label_encoder.fit_transform(self.y).flatten()
-
+        self.y = self.label_encoder.fit_transform(self.y)
+        
     def update_test_indices(self, test_size=0.1):
         """Updates `test_indices` property with indices of `test_size` proportion.
 
